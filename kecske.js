@@ -12,15 +12,20 @@ function init() {
   /*A képekre kattintva (bármelyik képre kattintunk), */
   var kepTomb = document.querySelectorAll("#bal>p>img");
   console.log(kepTomb);
-
-  for (let index = 0; index < kepTomb.length; index++) {
-    kepTomb[index].addEventListener("click", kattintas);
+  kepTomb.forEach(function (elem) {
+    elem.addEventListener("click", kattintas);
     /**Ha a  képek fölé mozgatva az egeret a képen jelenjen meg  a kiemel stílus!
 6.	JS: Ha a képekről elviszem az egeret, akkor a stílus tűnjön el róla. 
  */
-    kepTomb[index].addEventListener("mouseover", foleVisz);
-    kepTomb[index].addEventListener("mouseout", leVisz);
-  }
+    elem.addEventListener("mouseover", function (event) {
+      // event.target.className="kiemel";
+      event.target.classList.add("kiemel");
+    });
+    elem.addEventListener("mouseout", function (event) {
+      //event.target.className="";
+      event.target.classList.remove("kiemel");
+    });
+  });
 }
 
 var tomb = [];
@@ -38,21 +43,17 @@ b.	írd ki a tömb tartalmát a konzolra!*/
   event.target.style.display = "none";
   // és jelenítsük meg a csónak közepén.
   //Ehhez helyezd el az article tagben található div tárolóba a képet!
-  var akktKep = "<img src='"+event.target.src+"' alt='' >";
+  var akktKep = "<img src='" + event.target.src + "' alt='' >";
   document.querySelectorAll("#csonak")[0].innerHTML += akktKep;
-  var utolsoIndex=document.querySelectorAll("#csonak img").length;
-  for (let index = 0; index < utolsoIndex; index++) {
-    document.querySelectorAll("#csonak img")[index].addEventListener("mouseover", foleVisz);
-    document.querySelectorAll("#csonak img")[index].addEventListener("mouseout", leVisz);  
-  }
- 
-}
-
-function foleVisz(event) {
-  // event.target.className="kiemel";
-  event.target.classList.add("kiemel");
-}
-function leVisz() {
-  //event.target.className="";
-  event.target.classList.remove("kiemel");
+  var csonakTomb = document.querySelectorAll("#csonak img");
+  csonakTomb.forEach(function (elem) {
+    elem.addEventListener("mouseover", function (event) {
+      // event.target.className="kiemel";
+      event.target.classList.add("kiemel");
+    });
+    elem.addEventListener("mouseout", function (event) {
+      //event.target.className="";
+      event.target.classList.remove("kiemel");
+    });
+  });
 }
