@@ -26,6 +26,9 @@ function init() {
       event.target.classList.remove("kiemel");
     });
   });
+
+
+  
 }
 
 var tomb = [];
@@ -43,7 +46,7 @@ b.	írd ki a tömb tartalmát a konzolra!*/
   event.target.style.display = "none";
   // és jelenítsük meg a csónak közepén.
   //Ehhez helyezd el az article tagben található div tárolóba a képet!
-  var akktKep = "<img src='" + event.target.src + "' alt='' >";
+  var akktKep = "<img src='" + event.target.src + "' alt='' class='csonak'>";
   document.querySelectorAll("#csonak")[0].innerHTML += akktKep;
   var csonakTomb = document.querySelectorAll("#csonak img");
   csonakTomb.forEach(function (elem) {
